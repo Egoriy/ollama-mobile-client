@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="OllamaMobileClient.App/OllamaMobileClient.App.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="OllamaMobileClient.Application/OllamaMobileClient.Application.csproj" />
+  <Project Path="OllamaMobileClient.Domain/OllamaMobileClient.Domain.csproj" />
+  <Project Path="OllamaMobileClient.Infrastructure/OllamaMobileClient.Infrastructure.csproj" />
+</Solution>
