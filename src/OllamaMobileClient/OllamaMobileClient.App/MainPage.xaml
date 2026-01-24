@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OllamaMobileClient.App.MainPage"
              Title="Ollama Client">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Clicked="OnSettingsClicked" />
+    </ContentPage.ToolbarItems>
     <Grid RowDefinitions="*,Auto" Padding="12" RowSpacing="10">
         <CollectionView x:Name="MessagesView" Grid.Row="0">
             <CollectionView.ItemTemplate>
@@ -22,6 +24,7 @@
             <Entry x:Name="Input" Placeholder="Сообщение..." />
             <Button Grid.Column="1" Text="Send" Clicked="OnSendClicked"/>
             <Button Grid.Column="2" Text="Stop" Clicked="OnStopClicked"/>
+
         </Grid>
     </Grid>
 </ContentPage>
