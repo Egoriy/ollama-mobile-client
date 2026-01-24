@@ -1,4 +1,5 @@
-﻿using OllamaMobileClient.App.ViewModels;
+﻿using OllamaMobileClient.App.Presentation.Pages;
+using OllamaMobileClient.App.ViewModels;
 using OllamaMobileClient.Applications.Abstractions;
 using OllamaMobileClient.Domain.Chats;
 using System.Collections.ObjectModel;
@@ -9,17 +10,18 @@ namespace OllamaMobileClient.App
     {
         private readonly IChatBackend _backend;
         private readonly string _chatId = "default";
-
+        private readonly SettingsPage _settingsPage;
         private CancellationTokenSource? _cts;
 
         public ObservableCollection<MessageVm> Messages { get; } = new();
 
-        public MainPage(IChatBackend backend)
+        public MainPage(IChatBackend backend, SettingsPage settingsPage)
         {
             InitializeComponent();
             _backend = backend;
 
             MessagesView.ItemsSource = Messages;
+            _settingsPage = settingsPage;
         }
 
         private async void OnSendClicked(object sender, EventArgs e)
@@ -46,7 +48,7 @@ namespace OllamaMobileClient.App
                 {
                     await MainThread.InvokeOnMainThreadAsync(() =>
                     {
-                        assistant.Text += chunk;
+                        assistant.Text += chunk.Text;
                     });
 
                     // лёгкий трюк, чтобы обновлялся UI:
@@ -68,5 +70,11 @@ namespace OllamaMobileClient.App
         {
             _cts?.Cancel();
         }
+
+        private async void OnSettingsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(_settingsPage);
+        }
+
     }
 }

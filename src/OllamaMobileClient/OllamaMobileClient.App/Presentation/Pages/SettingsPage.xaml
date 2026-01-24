@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OllamaMobileClient.App.Presentation.Pages.SettingsPage"
+             Title="Настройки">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Label Text="Подключение к Ollama" FontSize="18" />
+
+            <Label Text="Host (IP или домен)" />
+            <Entry Text="{Binding Host}" Placeholder="ollama.local или 192.168.1.10" />
+
+            <Label Text="Port" />
+            <Entry Text="{Binding Port}" Keyboard="Numeric" />
+
+            <Label Text="Model" />
+            <Entry Text="{Binding Model}" Placeholder="qwen3:8b" />
+
+            <HorizontalStackLayout Spacing="12">
+                <Label Text="Показывать thinking" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding ShowThinking}" />
+            </HorizontalStackLayout>
+
+            <Label Text="Подсказка: для Android HTTP может быть разрешён только для заранее заданных адресов (ollama.local / VPN)."
+                   FontSize="12" Opacity="0.7"/>
+
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Label Text="{Binding Status}" FontSize="12" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
